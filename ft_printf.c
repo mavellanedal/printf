@@ -6,7 +6,7 @@
 /*   By: mavellan <mavellan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 13:32:17 by mavellan          #+#    #+#             */
-/*   Updated: 2024/10/10 17:10:31 by mavellan         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:19:21 by mavellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,19 @@ int	ft_printf(const char *format, ...)
 
 int	ft_check_format(va_list args, const char *format, int cont)
 {
-		if (*format == 's')
-			cont += ft_print_string(args);
-		else if (*format == 'c')
-			cont += ft_print_char(args);
-		else if (*format == 'd' || *format == 'i')
-			cont += ft_print_int(args);
-		else if (*format == 'u')
-			cont += ft_print_unsigned(args);
-		else if (*format == 'x')
-			cont += ft_print_hex(args, 'x');
-		else if (*format == 'X')
-			cont += ft_print_hex(args, 'X');
-		return (cont);
+	if (*format == 's')
+		cont += ft_print_string(args);
+	else if (*format == 'c')
+		cont += ft_print_char(args);
+	else if (*format == 'd' || *format == 'i')
+		cont += ft_print_int(args);
+	else if (*format == 'u')
+		cont += ft_print_unsigned(args);
+	else if (*format == 'x')
+		cont += ft_print_hex(args, 'x');
+	else if (*format == 'X')
+		cont += ft_print_hex(args, 'X');
+	else if (*format == 'p')
+		cont += ft_print_pointer(args);
+	return (cont);
 }

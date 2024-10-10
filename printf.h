@@ -6,7 +6,7 @@
 /*   By: mavellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:15:55 by mavellan          #+#    #+#             */
-/*   Updated: 2024/10/10 17:09:44 by mavellan         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:50:20 by mavellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int		ft_print_unsigned(va_list args);
 int		ft_check_format(va_list args, const char *format, int cont);
 int		ft_print_hex(va_list args, char format);
 void	ft_putnbr_base(unsigned long long nbr, char *base);
+int		ft_print_pointer(va_list args);
 
 #endif

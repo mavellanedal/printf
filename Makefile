@@ -8,6 +8,7 @@ SRC = ft_printf.c \
 	  ft_print_unsigned.c \
 	  ft_putunsigned.c \
 	  ft_print_hex.c \
+	  ft_print_pointer.c
 
 OBJ = $(SRC:.c=.o)
 
