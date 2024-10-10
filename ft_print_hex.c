@@ -1,36 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
+/*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mavellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 18:00:21 by mavellan          #+#    #+#             */
-/*   Updated: 2024/10/10 15:35:27 by mavellan         ###   ########.fr       */
+/*   Created: 2024/10/10 14:50:53 by mavellan          #+#    #+#             */
+/*   Updated: 2024/10/10 17:05:45 by mavellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int	ft_print_unsigned(va_list args)
+void	ft_putnbr_base(unsigned long long nbr, char *base)
+{
+	if (nbr >= 16)
+		ft_putnbr_base(nbr / 16, base);
+	write(1, &base[nbr % 16], 1);
+}
+
+int	ft_print_hex(va_list args, char format)
 {
 	unsigned int	num;
 	int				len;
-	unsigned int	tmp;
+	char			*base;
+	unsigned int	temp;
 
 	num = va_arg(args, unsigned int);
-	tmp = num;
+	if (format == 'x')
+		base = "0123456789abcdef";
+	else if (format == 'X')
+		base = "0123456789ABCDEF";
 	len = 0;
 	if (num == 0)
-		len = 1;
+		len += write(1, "0", 1);
 	else
+		ft_putnbr_base(num, base);
+	temp = num;
+	while (temp)
 	{
-		while (tmp > 0)
-		{
-			tmp /= 10;
-			len++;
-		}
+		temp /= 16;
+		len++;
 	}
-	ft_putnbr_unsigned(num);
 	return (len);
 }

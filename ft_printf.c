@@ -6,13 +6,13 @@
 /*   By: mavellan <mavellan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 13:32:17 by mavellan          #+#    #+#             */
-/*   Updated: 2024/10/10 13:53:39 by mavellan         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:10:31 by mavellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int ft_printf	(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		cont;
@@ -21,16 +21,23 @@ int ft_printf	(const char *format, ...)
 	cont = 0;
 	while (*format)
 	{
-		ft_check_format( args, format, cont);
+		if (*format == '%')
+		{
+			format++;
+			ft_check_format (args, format, cont);
+		}
+		else
+		{
+			write(1, format, 1);
+			cont++;
+		}
+		format++;
 	}
 	return (cont);
 }
 
-ft_check_format	(va_list args, const char *format, int cont)
+int	ft_check_format(va_list args, const char *format, int cont)
 {
-	if (*format == '%')
-	{
-		format++;
 		if (*format == 's')
 			cont += ft_print_string(args);
 		else if (*format == 'c')
@@ -40,14 +47,8 @@ ft_check_format	(va_list args, const char *format, int cont)
 		else if (*format == 'u')
 			cont += ft_print_unsigned(args);
 		else if (*format == 'x')
-			cont += ft_print_hex_min(args);
+			cont += ft_print_hex(args, 'x');
 		else if (*format == 'X')
-			cont += ft_print_hex_may(args);
-	}
-	else
-	{
-	write(1, format, 1);
-	cont++;
-	}
-	format++;
+			cont += ft_print_hex(args, 'X');
+		return (cont);
 }

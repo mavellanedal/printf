@@ -6,7 +6,7 @@
 /*   By: mavellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:39:46 by mavellan          #+#    #+#             */
-/*   Updated: 2024/10/08 16:53:45 by mavellan         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:13:30 by mavellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_print_char(va_list args)
 	char	c;
 
 	c = (char)va_arg(args, int);
-	write(1, &c, 1);
+	
+	if (write(1, &c, 1) == -1)
+		return (-1);
 	return (1);
 }
