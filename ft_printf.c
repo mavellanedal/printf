@@ -6,11 +6,11 @@
 /*   By: mavellan <mavellan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 13:32:17 by mavellan          #+#    #+#             */
-/*   Updated: 2024/10/10 18:19:21 by mavellan         ###   ########.fr       */
+/*   Updated: 2024/10/11 16:27:25 by mavellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_printf(const char *format, ...)
 {
@@ -24,7 +24,7 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			ft_check_format (args, format, cont);
+			cont += ft_check_format (args, format);
 		}
 		else
 		{
@@ -36,8 +36,11 @@ int	ft_printf(const char *format, ...)
 	return (cont);
 }
 
-int	ft_check_format(va_list args, const char *format, int cont)
+int	ft_check_format(va_list args, const char *format)
 {
+	int	cont;
+
+	cont = 0;
 	if (*format == 's')
 		cont += ft_print_string(args);
 	else if (*format == 'c')
@@ -52,5 +55,10 @@ int	ft_check_format(va_list args, const char *format, int cont)
 		cont += ft_print_hex(args, 'X');
 	else if (*format == 'p')
 		cont += ft_print_pointer(args);
+	else if (*format == '%')
+	{
+		write(1, "%", 1);
+		cont += 1;
+	}
 	return (cont);
 }

@@ -6,11 +6,11 @@
 /*   By: mavellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:30:43 by mavellan          #+#    #+#             */
-/*   Updated: 2024/10/10 18:10:26 by mavellan         ###   ########.fr       */
+/*   Updated: 2024/10/11 16:46:33 by mavellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_print_string(va_list args)
 {
@@ -20,11 +20,13 @@ int	ft_print_string(va_list args)
 	str = va_arg(args, char *);
 	len = 0;
 	if (!str)
-		return (0);
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	while (str[len])
 	{
-		if (write(1, &str[len], 1))
-			return (-1);
+		write(1, &str[len], 1);
 		len++;
 	}
 	return (len);

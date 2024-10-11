@@ -6,18 +6,17 @@
 /*   By: mavellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:39:46 by mavellan          #+#    #+#             */
-/*   Updated: 2024/10/10 18:18:35 by mavellan         ###   ########.fr       */
+/*   Updated: 2024/10/11 16:21:05 by mavellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_print_char(va_list args)
 {
 	char	c;
 
 	c = (char)va_arg(args, int);
-	if (write(1, &c, 1) == -1)
-		return (-1);
+	write(1, &c, 1);
 	return (1);
 }

@@ -4,7 +4,6 @@ SRC = ft_printf.c \
       ft_print_string.c \
 	  ft_print_char.c \
 	  ft_print_int.c \
-	  libft/ft_itoa.c \
 	  ft_print_unsigned.c \
 	  ft_putunsigned.c \
 	  ft_print_hex.c \
